@@ -1,0 +1,8 @@
+{
+  "name": "Did (دید) - Video Conferencing",
+  "description": "A professional, secure video conferencing platform optimized for internal networks with a Persian-first design.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
