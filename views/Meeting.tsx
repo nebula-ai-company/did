@@ -69,8 +69,8 @@ export const Meeting: React.FC<MeetingProps> = ({ onChangeView, meetingId }) => 
             <span className="font-bold text-sm">جلسه هفتگی تیم فنی</span>
             <span className="text-xs text-gray-400 font-mono">{formatTime(time)}</span>
           </div>
-          <div className="bg-green-500/10 text-green-500 text-xs px-2 py-0.5 rounded flex items-center gap-1">
-             <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+          <div className="bg-primary-500/10 text-primary-500 text-xs px-2 py-0.5 rounded flex items-center gap-1">
+             <div className="w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse"></div>
              پایدار
           </div>
         </div>

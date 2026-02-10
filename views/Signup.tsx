@@ -41,7 +41,7 @@ export const Signup: React.FC<SignupProps> = ({ onChangeView }) => {
           </div>
 
           <div className="text-center space-y-2 mb-8">
-            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">درخواست عضویت</h1>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">درخواست عضویت</h1>
             <p className="text-gray-500 dark:text-gray-400">اطلاعات زیر را تکمیل کنید. تیم پشتیبانی پس از بررسی با شما تماس خواهد گرفت.</p>
           </div>
 

@@ -5,17 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <title>Did | Video Conferencing</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+      /* Custom Font Registration - Variable Font (Peyda) */
+      @font-face {
+        font-family: 'AppFont';
+        src: url('https://f91wsij3q5.ufs.sh/f/qPjjgmKV3XSekuUL253OtlQqH9FWUGb4Shfc67yaC1vmp3w2');
+        font-weight: 100 900; /* Supports the full range of weights from Thin to Black */
+        font-style: normal;
+        font-display: swap;
+      }
+
+      body {
+        font-family: 'AppFont', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow: hidden; /* App-like feel */
+      }
+      /* Custom Scrollbar for dark theme */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #888; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }
+      /* Force AppFont on all inputs and buttons specifically to override user agent styles */
+      input, button, select, textarea, pre, code, kbd, samp {
+        font-family: 'AppFont', sans-serif !important;
+      }
+    </style>
     <script>
       tailwind.config = {
         darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Vazirmatn', 'sans-serif'],
-              mono: ['Vazirmatn', 'sans-serif'],
+              sans: ['AppFont', 'sans-serif'],
+              mono: ['AppFont', 'sans-serif'],
             },
             colors: {
               primary: {
@@ -47,39 +79,14 @@
         }
       }
     </script>
-    <style>
-      body {
-        font-family: 'Vazirmatn', sans-serif;
-        -webkit-font-smoothing: antialiased;
-        overflow: hidden; /* App-like feel */
-      }
-      /* Custom Scrollbar for dark theme */
-      ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #888; 
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #555; 
-      }
-      /* Force Vazirmatn on all inputs and buttons specifically to override user agent styles */
-      input, button, select, textarea, pre, code, kbd, samp {
-        font-family: 'Vazirmatn', sans-serif !important;
-      }
-    </style>
   <script type="importmap">
 {
   "imports": {
     "react/": "https://esm.sh/react@^19.2.4/",
     "react": "https://esm.sh/react@^19.2.4",
     "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "ogl": "https://esm.sh/ogl@1.0.11"
   }
 }
 </script>

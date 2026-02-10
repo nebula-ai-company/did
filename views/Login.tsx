@@ -28,7 +28,7 @@ export const Login: React.FC<LoginProps> = ({ onChangeView, onLogin }) => {
       <div className="flex-1 flex flex-col justify-center items-center p-6 sm:p-12 lg:p-24 relative animate-enter">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center space-y-2">
-            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">ورود به حساب کاربری</h1>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">ورود به حساب کاربری</h1>
             <p className="text-gray-500 dark:text-gray-400">برای دسترسی به پنل کاربری، ایمیل و رمز عبور خود را وارد کنید.</p>
           </div>
 
