@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Calendar as CalendarIcon, LayoutGrid, List } from 'lucide-react';
 
 interface CalendarWidgetProps {
@@ -8,6 +8,22 @@ interface CalendarWidgetProps {
 export const CalendarWidget: React.FC<CalendarWidgetProps> = ({ className = '' }) => {
   const [view, setView] = useState<'month' | 'week'>('month');
   const [now, setNow] = useState(new Date());
+  
+  // Mouse effect state
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    setOpacity(1);
+  };
+
+  const handleMouseLeave = () => {
+    setOpacity(0);
+  };
   
   // Update time every minute to keep date accurate if app stays open long
   useEffect(() => {
@@ -216,10 +232,42 @@ export const CalendarWidget: React.FC<CalendarWidgetProps> = ({ className = '' }
   };
 
   return (
-    <div className={`bg-white/40 dark:bg-black/40 backdrop-blur-3xl border border-white/40 dark:border-white/10 shadow-sm dark:shadow-2xl rounded-[2.5rem] p-8 flex flex-col animate-fade-up delay-1 overflow-hidden ${className}`}>
+    <div 
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className={`bg-white/40 dark:bg-black/40 backdrop-blur-3xl shadow-sm dark:shadow-2xl rounded-[2.5rem] p-8 flex flex-col animate-fade-up delay-1 overflow-hidden relative group ${className}`}
+    >
+      {/* 1. Static Border */}
+      <div className="absolute inset-0 rounded-[2.5rem] border border-white/40 dark:border-white/10 pointer-events-none"></div>
+
+      {/* 2. Dynamic Border Glow */}
+      <div 
+        className="absolute inset-0 rounded-[2.5rem] pointer-events-none transition-opacity duration-200"
+        style={{
+            opacity,
+            background: `radial-gradient(500px circle at ${mousePos.x}px ${mousePos.y}px, #2196F3, transparent 50%)`,
+            maskImage: 'linear-gradient(black, black), linear-gradient(black, black)',
+            maskClip: 'content-box, border-box',
+            maskComposite: 'exclude',
+            WebkitMaskImage: 'linear-gradient(black, black), linear-gradient(black, black)',
+            WebkitMaskClip: 'content-box, border-box',
+            WebkitMaskComposite: 'xor',
+            padding: '1.5px' 
+        }}
+      ></div>
       
+      {/* 3. Inner Spotlight */}
+      <div 
+        className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+        style={{
+          opacity,
+          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(33, 150, 243, 0.12), transparent 40%)`
+        }}
+      ></div>
+
       {/* Header */}
-      <div className="flex items-center justify-between mb-4 shrink-0">
+      <div className="flex items-center justify-between mb-4 shrink-0 relative z-10">
         <div className="flex items-center gap-3">
            <div className="p-3 bg-primary-500/10 rounded-2xl text-primary-600 dark:text-primary-400 border border-primary-500/20 backdrop-blur-sm">
              <CalendarIcon className="w-6 h-6" />
@@ -244,12 +292,12 @@ export const CalendarWidget: React.FC<CalendarWidgetProps> = ({ className = '' }
       </div>
 
       {/* Calendar Content */}
-      <div className="flex-1 min-h-0">
+      <div className="flex-1 min-h-0 relative z-10">
          {renderGrid()}
       </div>
       
       {/* Footer Info */}
-      <div className="mt-4 pt-4 border-t border-gray-200/50 dark:border-white/5 flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 shrink-0">
+      <div className="mt-4 pt-4 border-t border-gray-200/50 dark:border-white/5 flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 shrink-0 relative z-10">
          <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-primary-500"></span>
             <span>جلسه دارید</span>
