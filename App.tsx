@@ -83,6 +83,7 @@ const App: React.FC = () => {
           <Meeting 
             onChangeView={setCurrentView} 
             meetingId={meetingId}
+            userSettings={userSettings}
           />
         );
       case AppView.SUMMARY:

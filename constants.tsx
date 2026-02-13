@@ -3,7 +3,7 @@ import { Participant } from './types';
 export const MOCK_PARTICIPANTS: Participant[] = [
   {
     id: 'me',
-    name: 'شما (میزبان)',
+    name: 'مدیر جلسه',
     isHost: true,
     isMe: true,
     videoOn: true,

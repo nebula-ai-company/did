@@ -17,6 +17,7 @@ export interface Participant {
   audioOn: boolean;
   isSpeaking: boolean;
   isScreenSharing: boolean;
+  isHandRaised?: boolean;
   connectionQuality: 'good' | 'fair' | 'poor';
   avatarUrl?: string;
 }
